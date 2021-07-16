@@ -22,12 +22,6 @@ defmodule Generator do
   end
 
   defp generate_password(length, numbers?, special_characters?) do
-    # Stream.repeatedly(fn -> Enum.random(generate_value_list(numbers?, special_characters?)) end)
-    # |> IO.inspect()
-    # |> Enum.take(length)
-
-    # |> Enum.join()
-    # |> IO.inspect()
     {integer_length, ""} = Integer.parse(length)
 
     Stream.repeatedly(fn -> Enum.random(generate_value_list(numbers?, special_characters?)) end)
