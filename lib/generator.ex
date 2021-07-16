@@ -30,13 +30,8 @@ defmodule Generator do
   end
 
   defp generate_value_list(numbers?, special_characters?)
-
-  defp generate_value_list("true", "true") do
-    (@letters ++ @numbers ++ @special_characters) |> IO.inspect()
-  end
-
+  defp generate_value_list("true", "true"), do: @letters ++ @numbers ++ @special_characters
   defp generate_value_list("true", "false"), do: @letters ++ @numbers
   defp generate_value_list("false", "true"), do: @letters ++ @special_characters
-
   defp generate_value_list("false", "false"), do: @letters
 end
