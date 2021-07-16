@@ -1,0 +1,41 @@
+<h1>Listing Passwords</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, GeneratorWeb.GenerateLive.FormComponent,
+    id: @generate.id || :new,
+    title: @page_title,
+    action: @live_action,
+    generate: @generate,
+    return_to: Routes.generate_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Length</th>
+      <th>Numbers?</th>
+      <th>Special characters?</th>
+      <th>Result</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="passwords">
+    <%= for generate <- @passwords do %>
+      <tr id="generate-<%= generate.id %>">
+        <td><%= generate.length %></td>
+        <td><%= generate.numbers? %></td>
+        <td><%= generate.special_characters? %></td>
+        <td><%= generate.result %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.generate_show_path(@socket, :show, generate) %></span>
+          <span><%= live_patch "Edit", to: Routes.generate_index_path(@socket, :edit, generate) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: generate.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Generate", to: Routes.generate_index_path(@socket, :new) %></span>

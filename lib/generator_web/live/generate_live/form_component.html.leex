@@ -1,0 +1,26 @@
+<h2><%= @title %></h2>
+
+<%= f = form_for @changeset, "#",
+  id: "generate-form",
+  phx_target: @myself,
+  phx_change: "validate",
+  phx_submit: "save" %>
+
+  <%= label f, :length %>
+  <%= number_input f, :length %>
+  <%= error_tag f, :length %>
+
+  <%= label f, :numbers? %>
+  <%= checkbox f, :numbers? %>
+  <%= error_tag f, :numbers? %>
+
+  <%= label f, :special_characters? %>
+  <%= checkbox f, :special_characters? %>
+  <%= error_tag f, :special_characters? %>
+
+  <%= label f, :result %>
+  <%= text_input f, :result %>
+  <%= error_tag f, :result %>
+
+  <%= submit "Save", phx_disable_with: "Saving..." %>
+</form>
