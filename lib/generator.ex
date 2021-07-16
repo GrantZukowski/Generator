@@ -7,12 +7,17 @@ defmodule Generator do
   if it comes from the database, an external API or others.
   """
 
-  def password(_params) do
+  def include_password(params) do
     %{
-      "length" => "8",
-      "numbers?" => "true",
-      "result" => "changeit",
-      "special_characters?" => "true"
+      "length" => params["length"],
+      "numbers?" => params["numbers?"],
+      "result" =>
+        generate_password(params["length"], params["numbers?"], params["special_characters?"]),
+      "special_characters?" => params["special_characters?"]
     }
+  end
+
+  defp generate_password(length, numbers?, special_characters?) do
+    "changeit"
   end
 end
