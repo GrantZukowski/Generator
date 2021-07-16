@@ -1,0 +1,37 @@
+<h1>Show Generate</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, GeneratorWeb.GenerateLive.FormComponent,
+    id: @generate.id,
+    title: @page_title,
+    action: @live_action,
+    generate: @generate,
+    return_to: Routes.generate_show_path(@socket, :show, @generate) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Length:</strong>
+    <%= @generate.length %>
+  </li>
+
+  <li>
+    <strong>Numbers?:</strong>
+    <%= @generate.numbers? %>
+  </li>
+
+  <li>
+    <strong>Special characters?:</strong>
+    <%= @generate.special_characters? %>
+  </li>
+
+  <li>
+    <strong>Result:</strong>
+    <%= @generate.result %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.generate_show_path(@socket, :edit, @generate), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.generate_index_path(@socket, :index) %></span>
