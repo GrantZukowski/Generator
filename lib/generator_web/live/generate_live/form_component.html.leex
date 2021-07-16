@@ -19,8 +19,9 @@
   <%= error_tag f, :special_characters? %>
 
   <%= label f, :result %>
-  <%= text_input f, :result %>
+  <%= text_input f, :result, disabled: true %>
   <%= error_tag f, :result %>
+  
 
   <%= submit "Save", phx_disable_with: "Saving..." %>
 </form>

@@ -1,7 +1,9 @@
 defmodule GeneratorWeb.GenerateLive.FormComponent do
   use GeneratorWeb, :live_component
 
+  alias Generator
   alias Generator.Password
+
 
   @impl true
   def update(%{generate: generate} = assigns, socket) do
@@ -24,6 +26,8 @@ defmodule GeneratorWeb.GenerateLive.FormComponent do
   end
 
   def handle_event("save", %{"generate" => generate_params}, socket) do
+    generate_params = generate_params |> Generator.password()
+    IO.inspect(generate_params)
     save_generate(socket, socket.assigns.action, generate_params)
   end
 
