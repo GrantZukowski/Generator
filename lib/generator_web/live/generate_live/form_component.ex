@@ -26,7 +26,6 @@ defmodule GeneratorWeb.GenerateLive.FormComponent do
 
   def handle_event("save", %{"generate" => generate_params}, socket) do
     generate_params = generate_params |> Generator.include_password()
-    IO.inspect(generate_params)
     save_generate(socket, socket.assigns.action, generate_params)
   end
 
